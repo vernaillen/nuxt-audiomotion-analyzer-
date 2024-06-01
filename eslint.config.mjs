@@ -7,14 +7,22 @@ export default createConfigForNuxt({
     // Rules for module authors
     tooling: true,
     // Rules for formatting
-    stylistic: true,
+    stylistic: {
+      commaDangle: 'never',
+      braceStyle: '1tbs'
+    }
   },
   dirs: {
     src: [
-      './playground',
-    ],
-  },
+      './playground'
+    ]
+  }
 })
   .append(
-    // your custom flat config here...
+    {
+      rules: {
+        'vue/multi-word-component-names': 0,
+        'vue/no-v-html': 0
+      }
+    }
   )
