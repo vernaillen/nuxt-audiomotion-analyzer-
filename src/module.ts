@@ -1,19 +1,40 @@
-import { defineNuxtModule, addPlugin, createResolver } from '@nuxt/kit'
-
-// Module options TypeScript interface definition
-export interface ModuleOptions {}
+import { defineNuxtModule, createResolver, addComponent } from '@nuxt/kit'
+import type { ModuleOptions } from './types'
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: 'my-module',
-    configKey: 'myModule'
+    name: 'nuxt-audiomotion-analyzer',
+    configKey: 'nuxtAudiomotionAnalyzer'
   },
-  // Default configuration options of the Nuxt module
-  defaults: {},
-  setup(_options, _nuxt) {
-    const resolver = createResolver(import.meta.url)
+  defaults: {
+    defaultOptions: {
+      height: 500
+    }
+  },
+  setup(options, nuxt) {
+    const { resolve } = createResolver(import.meta.url)
+    const resolveRuntimeModule = (path: string) => resolve('./runtime', path)
 
-    // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
-    addPlugin(resolver.resolve('./runtime/plugin'))
+    const publicConfig: ModuleOptions = {
+      defaultOptions: options.defaultOptions
+    }
+    nuxt.options.runtimeConfig.public.nuxtAudiomotionAnalyzer = publicConfig
+
+    addComponent({ name: 'NuxtAudioMotionAnalyzer', filePath: resolveRuntimeModule('./components/NuxtAudioMotionAnalyzer') })
   }
 })
+
+declare module '@nuxt/schema' {
+
+  interface PublicRuntimeConfig {
+    nuxtAudiomotionAnalyzer: ModuleOptions
+  }
+
+  interface ConfigSchema {
+    runtimeConfig: {
+      public?: {
+        nuxtAudiomotionAnalyzer: ModuleOptions
+      }
+    }
+  }
+}

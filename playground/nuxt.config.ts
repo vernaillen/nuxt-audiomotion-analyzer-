@@ -1,5 +1,9 @@
 export default defineNuxtConfig({
   modules: ['../src/module'],
-  myModule: {},
+  nuxtAudiomotionAnalyzer: {
+    defaultOptions: {
+      height: 400
+    }
+  },
   devtools: { enabled: true }
 })
