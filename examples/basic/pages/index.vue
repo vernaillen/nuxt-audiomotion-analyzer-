@@ -7,15 +7,14 @@
         src="https://ice2.somafm.com/beatblender-128-mp3"
         crossorigin="anonymous"
       />
-      <div class="m-5">
-        <UButton
-          :label="isPlaying ? 'Pause' : 'Play'"
-          :icon="isPlaying ? 'i-heroicons-pause' : 'i-heroicons-play'"
-          @click="isPlaying ?audio?.pause() : audio?.play()"
-        />
-        <StreamInfo />
-      </div>
+      <UButton
+        :label="isPlaying ? 'Pause' : 'Play'"
+        :icon="isPlaying ? 'i-heroicons-pause' : 'i-heroicons-play'"
+        class="my-3"
+        @click="isPlaying ?audio?.pause() : audio?.play()"
+      />
       <NuxtAudioMotionAnalyzer :source="audio" />
+      <StreamInfo />
     </UContainer>
   </UPage>
 </template>

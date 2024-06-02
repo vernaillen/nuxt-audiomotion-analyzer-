@@ -1,5 +1,5 @@
 <template>
-  <span class="ml-4 text-sm">
+  <div class="my-3 text-sm">
     stream: <ULink
       to="https://somafm.com/beatblender/"
       class="text-sm/6 hover:text-primary relative"
@@ -12,5 +12,5 @@
         name="i-heroicons-arrow-up-right-20-solid"
       />
     </ULink>
-  </span>
+  </div>
 </template>
