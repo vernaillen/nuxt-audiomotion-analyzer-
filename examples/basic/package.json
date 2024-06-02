@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "nuxt": "^3.11.2",
-    "nuxt-audiomotion-analyzer": "latest",
+    "nuxt-audiomotion-analyzer": "workspace:latest",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2"
   },
