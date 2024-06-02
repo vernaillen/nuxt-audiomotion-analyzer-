@@ -55,8 +55,10 @@ const initAnalyzer = () => {
   }
 }
 
-const options = ref(props.options)
-watch(options.value, async (newOptions) => {
-  if (audioMotionAnalyzer) audioMotionAnalyzer.setOptions(newOptions)
-})
+if (props.options) {
+  const options = ref(props.options)
+  watch(options.value, async (newOptions) => {
+    if (audioMotionAnalyzer) audioMotionAnalyzer.setOptions(newOptions)
+  })
+}
 </script>
