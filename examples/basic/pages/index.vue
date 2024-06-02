@@ -3,15 +3,11 @@
     <UContainer>
       <audio
         id="audio"
-        ref="audioRef"
         src="https://ice2.somafm.com/beatblender-128-mp3"
         crossorigin="anonymous"
-      />
-      <UButton
-        :label="isPlaying ? 'Pause' : 'Play'"
-        :icon="isPlaying ? 'i-heroicons-pause' : 'i-heroicons-play'"
+        controls
+        autoplay
         class="my-3"
-        @click="isPlaying ?audio?.pause() : audio?.play()"
       />
       <NuxtAudioMotionAnalyzer :source="audio" />
       <StreamInfo />
@@ -20,17 +16,8 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-
 const audio = ref<HTMLMediaElement>()
-const isPlaying = ref(false)
 onMounted(() => {
   audio.value = document.getElementById('audio') as HTMLMediaElement
-  audio.value.onplaying = () => {
-    isPlaying.value = true
-  }
-  audio.value.onpause = () => {
-    isPlaying.value = false
-  }
 })
 </script>
